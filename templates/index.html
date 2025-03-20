@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit Builder</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <div class = "app">
+        <div classs = "top-panel" id="top-panel">
+            <h1> Welcome {{ session['currentUser']}}, to the Circuit Builder </h1>
+        </div>
+
+        <div class = "content">
+            <div id="left-panel">
+                <div>
+                    <h1>Components</h1>
+                </div>
+
+                <button class = "component-button" onclick="addComponent()">Add Component</button>
+                <br>
+                <!-- <div onclick="addComponent()">
+                    <img id='Component' class="draggable-image-circle" draggable="true"
+                        src="{{url_for('static', filename='ammeter.png')}}">
+                </div> -->
+                <!-- <div>
+                    <h3>Ammeter</h3>
+                </div>
+                <br>
+                <div onclick=spawnComponent()>
+                    <img class="draggable-image-circle" draggable='true'
+                        src="{{url_for('static', filename='Voltmeter.png')}}" />
+                </div>
+                <div>
+                    <h3>Voltmeter</h3>
+                </div>
+                <br>
+                <div onclick=spawnComponent()>
+                    <img class="draggable-image-circle" draggable="true"
+                        src="{{url_for('static', filename='battery.png')}}" />
+                </div>
+                <div>
+                    <h3>Battery</h3>
+                </div>
+                <br>
+                <div onclick=spawnComponent()>
+                    <img class="draggable-image-circle" draggable="true"
+                        src="{{url_for('static', filename='bulb.png')}}" />
+                </div>
+                <div>
+                    <h3>Bulb</h3>
+                </div> -->
+            </div>
+            <div id="drop-area"></div>
+
+        </div>
+
+        <div id="bottom-panel">
+            <h1> Click and drag components!</h1>
+            <button id="switch-dark-mode-button" class="switch-dark-mode-button" onclick="toggleDarkMode()">☽</button>
+            <a class="button" href='/dashboard'> 🏠︎ </a>
+    
+        </div>
+    </div>
+
+    <script>
+
+        // Dark mode code
+
+        function toggleDarkMode() {
+            const body = document.body; // Get the body element
+            const button = document.getElementById('switch-dark-mode-button'); // Get the dark mode switch button
+            body.classList.toggle('dark-mode'); // Toggle the 'dark-mode' class on the body element
+            // Update the button text based on the current mode
+            if (body.classList.contains('dark-mode')) {
+                button.textContent = '☀︎';
+            } else {
+                button.textContent = '☽';
+            }
+        }
+
+        //##############################################################################################################
+    </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+
+</html>

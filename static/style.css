@@ -1,0 +1,216 @@
+.component {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: absolute;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex: 8;
+}
+
+
+
+.dark-mode #top-panel,
+.dark-mode #bottom-panel,
+.dark-mode #left-panel,
+.dark-mode #drop-area {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.switch-dark-mode-button {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-radius: 50% !important;
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.spawnButton {
+    border: solid rgb(255, 255, 255);
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+
+.h1 {
+    text-align: center;
+}
+
+.button {
+    margin-left: 70%;
+    background-color: #FFFFFF;
+    /* Green */
+    border: solid black;
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+
+}
+
+#bottom-panel {
+    display: flex;
+    flex: 1;
+    /* width: 100%;
+    margin-top: 43%;
+    height: 10%; */
+    background-color: rgb(151, 205, 228);
+    padding: 10px;
+    border: 5px solid #10739E;
+    /* position: absolute; */
+    color: black;
+    text-align: center;
+    align-items: center;
+}
+
+#text-centre {
+    text-align: center;
+}
+
+#top-panel {
+    /* margin-left: 19%; */
+    background-color: rgb(151, 205, 228);
+    padding: 10px;
+    border: 5px solid #10739E;
+    text-align: center;
+    color: black;
+    flex: 1;
+}
+
+body {
+    margin: 0;
+}
+
+#left-panel {
+    text-align: center;
+    flex: 1;
+    /* width: 20%;
+    height: 100%; */
+    background-color: #F8CECC;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border: 5px solid #B85450;
+}
+
+#drop-area {
+    flex: 8;
+    border-style: dashed;
+    border: 2px #ccc;
+    background-color: #df7e7e;
+    position: relative;
+}
+
+#left-panel .draggable {
+    /* width: 100px; */
+    /* height: 10px; */
+    background-color: rgb(0, 0, 0);
+    cursor: move;
+    align-items: center;
+    /* left: 150px; */
+    /* position: absolute; */
+    /* Ensure initial position is relative */
+    align-items: center;
+}
+
+#left-panel .draggable-circle {
+    /* width: 100px; */
+    /* height: 100px; */
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+    cursor: move;
+    /* left: 140px; */
+    /* position: relative; */
+    /* Ensure initial position is relative */
+    align-items: center;
+}
+
+.draggable {
+    width: 100px;
+    height: 10px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid #ccc;
+    cursor: move;
+    position: relative;
+    /* Ensure draggable elements are positioned absolutely */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.draggable-circle {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(27, 240, 91);
+    border: 1px solid #ccc;
+    position: absolute;
+    /* Ensure draggable elements are positioned absolutely */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* Makes the shape circular */
+
+}
+
+.draggable-image-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* Makes the shape circular */
+}
+
+
+#action-button {
+    background-color: #ff0000;
+    /* Red color for delete button */
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Make the button circular */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+    /* Ensure the button is above other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#action-button:hover {
+    background-color: #cc0000;
+    /* Darker red on hover */
+}
+
+.line {
+    position: absolute;
+    background-color: black;
+    height: 5px;
+    z-index: 500;
+    /* Ensure the line is above other elements but below the button */
+}
+
+.node {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
