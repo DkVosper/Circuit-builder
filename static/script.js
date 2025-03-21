@@ -1,121 +1,193 @@
 // Drag and drop feature #######################################################################################################################    
 
+class Circuit {
+    constructor() {
+        this.components = []
+    }
+
+    addComponent = (newComponent) => {
+        this.components.push(
+            {
+                gate:newComponent,
+                connectedTo: null
+            })
+        console.log(this.components)
+    }
+}
+
+
 class CircuitComponent{
     constructor(){
         this.x = 300;
         this.y = 400;
+        this.width = 50;
+        this.height = 50;
         this.element = document.createElement("div")
         this.element.classList.add("component")
         this.element.style.left = this.x + "px"
         this.element.style.top = this.y + "px"
         
+        this.element.addEventListener("mousedown", (event) => this.startDrag(event))
 
+    }
+
+    startDrag = (event) => {
+        console.log("Drag started")
+        this.offsetX = event.clientX - this.element.offsetLeft
+        this.offsetY = event.clientY - this.element.offsetTop
+        this.element.style.cursor = "grabbing"
+
+        document.addEventListener("mousemove", this.drag)
+        document.addEventListener("mouseup", this.stopDrag)
+
+    }
+
+
+    drag = (event) => {
+        let newX = event.clientX - this.offsetX
+        let newY = event.clientY - this.offsetY
+
+        
+
+
+        //validate positions
+        if (newX > dropArea.clientWidth - this.width){
+            newX = dropArea.clientWidth - this.width
+        }
+
+        if (newX < 0){
+            newX = 0
+        }
+
+        if (newY > dropArea.clientHeight - this.height){
+            newY = dropArea.clientHeight - this.height
+        }
+        
+        if (newY < 0){
+            newY = 0
+        }
+    
+
+
+
+        this.x = newX
+        this.y = newY
+        this.element.style.left = this.x + "px"
+        this.element.style.top = this.y + "px"
+    }
+
+    stopDrag = () =>{
+        console.log("stopping drag....")
+        
+        this.element.style.cursor = "grab"
+        document.removeEventListener("mousemove", this.drag)
+        document.removeEventListener("mouseup", this.stopDrag)
     }
 }
 
-    function addComponent() {
+
+class Battery extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "B"
+        this.element.style.backgroundImage = "{{url_for('static', filename='battery.png')}}"
+    }
+}
+
+class Voltmeter extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "V"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
+
+class Bulb extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "X"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
+
+class Ammeter extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "A"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
+
+
+    function addComponent(componentType) {
         console.log("adding a new component...")
-        let newComponent = new CircuitComponent()
+        console.log(componentType)
+        if (componentType === "battery"){
+            var newComponent = new Battery()
+        }
+        if (componentType === "ammeter"){
+            var newComponent = new Ammeter()
+        }
+        if (componentType === "voltmeter"){
+            var newComponent = new Voltmeter()
+        }
+        if (componentType === "bulb"){
+            var newComponent = new Bulb()
+        }
         dropArea.appendChild(newComponent.element)
+        circuit.addComponent(newComponent)
+
     }
 
 
-    const dropArea = document.getElementById("drop-area")
+
     let newX = 0, newY = 0, startX = 0, startY = 0;
-    const component = component.GetElementById('component');
-    component.addEventListener('mousedown',Mousedown);
+// const component = component.GetElementById('component');
+// component.addEventListener('mousedown',Mousedown);
+const dropArea = document.getElementById("drop-area")
+const circuit = new Circuit()
 
-    function Mousedown(e){
-        startX = e.clientX;
-        startY = e.clientY;
-
-        component.addEventListener('mousemove',Mousemove);
-        component.addEventListener('mouseup',Mouseup);
-        console.log('mousedown working')
-    }
-
-    function Mousemove(e){
-        newX = startX - e.clientX;
-        newY = startY - e.clientY;
+    
+//     function Mousedown(e){
+//         startX = e.clientX;
+//         startY = e.clientY;
         
-        startX = e.clientX;
-        startY = e.clientY;
+//         component.addEventListener('mousemove',Mousemove);
+//         component.addEventListener('mouseup',Mouseup);
+//         console.log('mousedown working')
+//     }
+    
+//     function Mousemove(e){
+//         newX = startX - e.clientX;
+//         newY = startY - e.clientY;
+        
+//         startX = e.clientX;
+//         startY = e.clientY;
+        
+//         component.style.top = (component.offsetTop - newY) + 'px';
+//         component.style.left = (component.offsetLeft - newX) + 'px';
+        
+//         console.log({newX,newY});
+//         console.log('mousemove working')
+//     }
 
-        component.style.top = (component.offsetTop - newY) + 'px';
-        component.style.left = (component.offsetLeft - newX) + 'px';
+//     function Mouseup(e){
+//         component.removeEventListener('mousemove',Mousemove);
+//     }
 
-        console.log({newX,newY});
-        console.log('mousemove working')
-    }
-
-    function Mouseup(e){
-        component.removeEventListener('mousemove',Mousemove);
-    }
-
-
-// Spawning in new components #############################################################################################################
-
-// function spawnComponent() {
-//     const dropArea = document.getElementById('drop-area');
-
-//     // Create a new component element
-//     const newComponent = document.getElementById('Component').cloneNode(true);
-//     newComponent.style.position = 'relative'; // Ensure the component is positioned relative to the container
-//     newComponent.style.display = 'inline-block';
-
-//     // Create a container for the component and its buttons
-//     const componentContainer = document.createElement('div');
-//     componentContainer.style.position = 'relative';
-//     componentContainer.style.display = 'inline-block';
-//     componentContainer.style.margin = '10px';
-
-//     // Create the first button (left side)
-//     const button1 = document.createElement('button');
-//     button1.textContent = ''; // Optional: Add text or leave empty
-//     button1.style.position = 'absolute';
-//     button1.style.width = '30px';
-//     button1.style.height = '30px';
-//     button1.style.borderRadius = '50%'; // Make the button circular
-//     button1.style.backgroundColor = '#007BFF'; // Optional: Set a background color
-//     button1.style.left = '-40px'; // Position to the left of the component
-//     button1.style.top = '50%'; // Center vertically
-//     button1.style.transform = 'translateY(-50%)'; // Adjust for centering
-//     button1.onclick = () => console.log('Button 1 clicked for this component');
-
-//     // Create the second button (right side)
-//     const button2 = document.createElement('button');
-//     button2.textContent = ''; // Optional: Add text or leave empty
-//     button2.style.position = 'absolute';
-//     button2.style.width = '30px';
-//     button2.style.height = '30px';
-//     button2.style.borderRadius = '50%'; // Make the button circular
-//     button2.style.backgroundColor = '#28A745'; // Optional: Set a background color
-//     button2.style.right = '-40px'; // Position to the right of the component
-//     button2.style.top = '50%'; // Center vertically
-//     button2.style.transform = 'translateY(-50%)'; // Adjust for centering
-//     button2.onclick = () => console.log('Button 2 clicked for this component');
-
-//     // Append the component and buttons to the container
-//     componentContainer.appendChild(button1);
-//     componentContainer.appendChild(newComponent);
-//     componentContainer.appendChild(button2);
-
-//     // Append the container to the drop area
-//     dropArea.appendChild(componentContainer);
-
-//     // Log to the console
-//     console.log("A new component has been spawned!");
+    
+// // Darkmode Script #######################################################################################################################
+// function toggleDarkMode() {
+//     const body = document.body; // Get the body element
+//     const button = document.getElementById('switch-dark-mode-button'); // Get the dark mode switch button
+//     body.classList.toggle('dark-mode'); // Toggle the 'dark-mode' class on the body element
+//     // Update the button text based on the current mode
+//     if (body.classList.contains('dark-mode')) {
+//         button.textContent = '☀︎';
+//     } else {
+//         button.textContent = '☽';
+//     }
 // }
 
-// Darkmode Script #######################################################################################################################
-function toggleDarkMode() {
-    const body = document.body; // Get the body element
-    const button = document.getElementById('switch-dark-mode-button'); // Get the dark mode switch button
-    body.classList.toggle('dark-mode'); // Toggle the 'dark-mode' class on the body element
-    // Update the button text based on the current mode
-    if (body.classList.contains('dark-mode')) {
-    button.textContent = '☀︎';
-    } else {
-    button.textContent = '☽';
-    }
-}
+
+

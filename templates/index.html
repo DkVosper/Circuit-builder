@@ -20,17 +20,17 @@
                     <h1>Components</h1>
                 </div>
 
-                <button class = "component-button" onclick="addComponent()">Add Component</button>
+                <!-- <button class = "component-button" onclick="addComponent('battery')">Add Battery</button> -->
                 <br>
-                <!-- <div onclick="addComponent()">
+                <div onclick="addComponent('ammeter')">
                     <img id='Component' class="draggable-image-circle" draggable="true"
                         src="{{url_for('static', filename='ammeter.png')}}">
-                </div> -->
-                <!-- <div>
+                </div> 
+                <div>
                     <h3>Ammeter</h3>
                 </div>
                 <br>
-                <div onclick=spawnComponent()>
+                <div onclick="addComponent('voltmeter')">
                     <img class="draggable-image-circle" draggable='true'
                         src="{{url_for('static', filename='Voltmeter.png')}}" />
                 </div>
@@ -38,7 +38,7 @@
                     <h3>Voltmeter</h3>
                 </div>
                 <br>
-                <div onclick=spawnComponent()>
+                <div onclick="addComponent('battery')">
                     <img class="draggable-image-circle" draggable="true"
                         src="{{url_for('static', filename='battery.png')}}" />
                 </div>
@@ -46,13 +46,13 @@
                     <h3>Battery</h3>
                 </div>
                 <br>
-                <div onclick=spawnComponent()>
+                <div onclick="addComponent('bulb')">
                     <img class="draggable-image-circle" draggable="true"
                         src="{{url_for('static', filename='bulb.png')}}" />
                 </div>
                 <div>
                     <h3>Bulb</h3>
-                </div> -->
+                </div>
             </div>
             <div id="drop-area"></div>
 
@@ -70,17 +70,17 @@
 
         // Dark mode code
 
-        function toggleDarkMode() {
-            const body = document.body; // Get the body element
-            const button = document.getElementById('switch-dark-mode-button'); // Get the dark mode switch button
-            body.classList.toggle('dark-mode'); // Toggle the 'dark-mode' class on the body element
-            // Update the button text based on the current mode
-            if (body.classList.contains('dark-mode')) {
-                button.textContent = '☀︎';
-            } else {
-                button.textContent = '☽';
-            }
-        }
+        // function toggleDarkMode() {
+        //     const body = document.body; // Get the body element
+        //     const button = document.getElementById('switch-dark-mode-button'); // Get the dark mode switch button
+        //     body.classList.toggle('dark-mode'); // Toggle the 'dark-mode' class on the body element
+        //     // Update the button text based on the current mode
+        //     if (body.classList.contains('dark-mode')) {
+        //         button.textContent = '☀︎';
+        //     } else {
+        //         button.textContent = '☽';
+        //     }
+        // }
 
         //##############################################################################################################
     </script>

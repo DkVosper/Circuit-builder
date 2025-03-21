@@ -1,0 +1,142 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// scrap Javascript
+
+// Spawning in new components #############################################################################################################
+
+// function spawnComponent() {
+//     const dropArea = document.getElementById('drop-area');
+
+//     // Create a new component element
+//     const newComponent = document.getElementById('Component').cloneNode(true);
+//     newComponent.style.position = 'relative'; // Ensure the component is positioned relative to the container
+//     newComponent.style.display = 'inline-block';
+
+//     // Create a container for the component and its buttons
+//     const componentContainer = document.createElement('div');
+//     componentContainer.style.position = 'relative';
+//     componentContainer.style.display = 'inline-block';
+//     componentContainer.style.margin = '10px';
+
+//     // Create the first button (left side)
+//     const button1 = document.createElement('button');
+//     button1.textContent = ''; // Optional: Add text or leave empty
+//     button1.style.position = 'absolute';
+//     button1.style.width = '30px';
+//     button1.style.height = '30px';
+//     button1.style.borderRadius = '50%'; // Make the button circular
+//     button1.style.backgroundColor = '#007BFF'; // Optional: Set a background color
+//     button1.style.left = '-40px'; // Position to the left of the component
+//     button1.style.top = '50%'; // Center vertically
+//     button1.style.transform = 'translateY(-50%)'; // Adjust for centering
+//     button1.onclick = () => console.log('Button 1 clicked for this component');
+
+//     // Create the second button (right side)
+//     const button2 = document.createElement('button');
+//     button2.textContent = ''; // Optional: Add text or leave empty
+//     button2.style.position = 'absolute';
+//     button2.style.width = '30px';
+//     button2.style.height = '30px';
+//     button2.style.borderRadius = '50%'; // Make the button circular
+//     button2.style.backgroundColor = '#28A745'; // Optional: Set a background color
+//     button2.style.right = '-40px'; // Position to the right of the component
+//     button2.style.top = '50%'; // Center vertically
+//     button2.style.transform = 'translateY(-50%)'; // Adjust for centering
+//     button2.onclick = () => console.log('Button 2 clicked for this component');
+
+//     // Append the component and buttons to the container
+//     componentContainer.appendChild(button1);
+//     componentContainer.appendChild(newComponent);
+//     componentContainer.appendChild(button2);
+
+//     // Append the container to the drop area
+//     dropArea.appendChild(componentContainer);
+
+//     // Log to the console
+//     console.log("A new component has been spawned!");
+// }
