@@ -9,7 +9,29 @@
 
 
 
+class Voltmeter extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "V"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
 
+class Bulb extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "X"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
+
+class Ammeter extends CircuitComponent{
+    constructor() {
+        super()
+        this.element.innerHTML = "A"
+        this.element.style.backgroundImage = "{{url_for('static', filename='Voltmeter.png')}}"
+    }
+}
 
 
 
