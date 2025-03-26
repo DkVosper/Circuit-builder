@@ -29,7 +29,7 @@ class Circuit {
       this.offsetX = event.clientX - this.x;
       this.offsetY = event.clientY - this.y;
       this.dragged = false;
-
+      this.element.style.cursor = "grabbing"
       
   
       document.addEventListener("mousemove", this.drag);
@@ -43,6 +43,24 @@ class Circuit {
       let newX = event.clientX - this.offsetX;
       let newY = event.clientY - this.offsetY;
   
+      //validate positions
+      if (newX > circuitSpace.clientWidth - this.width){
+          newX = circuitSpace.clientWidth - this.width
+      }
+
+      if (newX < 0){
+          newX = 0
+      }
+
+      if (newY > circuitSpace.clientHeight - this.height){
+          newY = circuitSpace.clientHeight - this.height
+      }
+      
+      if (newY < 0){
+          newY = 0
+      }
+
+
       this.x = newX;
       this.y = newY;
 
