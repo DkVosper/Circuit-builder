@@ -1,4 +1,3 @@
-
 class Circuit {
     constructor() {
       this.connections = [];
@@ -8,7 +7,7 @@ class Circuit {
   class Component {
     constructor() {
       this.x = 300;
-      this.y = 400;
+      this.y = 300;
   
       this.width = 50;
       this.height = 50;
@@ -18,9 +17,16 @@ class Circuit {
   
       this.element.style.left = this.x + "px";
       this.element.style.top = this.y + "px";
+
+
+
       this.element.addEventListener("mousedown", (event) =>
         this.handleClick(event)
       );
+      this.element.addEventListener("dblclick", (event) =>
+        this.deletenode(event)
+      );
+
   
       circuitSpace.appendChild(this.element);
     }
@@ -29,9 +35,9 @@ class Circuit {
       this.offsetX = event.clientX - this.x;
       this.offsetY = event.clientY - this.y;
       this.dragged = false;
-      this.element.style.cursor = "grabbing"
+      this.element.style.cursor = "grab"
       
-  
+      
       document.addEventListener("mousemove", this.drag);
       document.addEventListener("mouseup", this.mouseUp);
     };
@@ -65,7 +71,7 @@ class Circuit {
       this.y = newY;
 
       // validation
-    
+      this.element.style.cursor = "grabbing"
       this.element.style.left = this.x + "px";
       this.element.style.top = this.y + "px";
       drawConnections();
@@ -86,9 +92,24 @@ class Circuit {
           }
         }
       }
-  
+    
+
+
+      drawConnections();
       document.removeEventListener("mousemove", this.drag);
       document.removeEventListener("mouseup", this.mouseUp);
+      document.removeEventListener("mouseup", this.deletenode);
+
+    };
+
+    deletenode = (event) => {
+      console.log('deleting node');
+      this.element.remove();
+      // Remove connections associated with this component
+      circuit.connections = circuit.connections.filter(
+        ([comp1, comp2]) => comp1 !== this && comp2 !== this
+      );
+      drawConnections();
     };
   }
   
@@ -128,21 +149,21 @@ class Circuit {
 
   class voltmeter extends Component{
     constructor() {
-        super()
+        super();
         this.element.innerHTML = "V"
     }
   }
 
   class ammeter extends Component{
     constructor() {
-        super()
+        super();
         this.element.innerHTML = "A"
     }
   }
 
   class bulb extends Component{
     constructor() {
-        super()
+        super();
         this.element.innerHTML = "B"
     }
   }
@@ -152,29 +173,17 @@ class Circuit {
     if (componentType === "battery") {
       newComponent = new battery();
     }
-  }
-
-  function addComponent(componentType) {
-    let newComponent;
+    if (componentType === "voltmeter") {
+      newComponent = new voltmeter();
+    }
     if (componentType === "ammeter") {
       newComponent = new ammeter();
     }
-  }
-  
-  function addComponent(componentType) {
-    let newComponent;
     if (componentType === "bulb") {
       newComponent = new bulb();
     }
   }
 
-
-  function addComponent(componentType) {
-    let newComponent;
-    if (componentType === "voltmeter") {
-      newComponent = new voltmeter();
-    }
-  }
 
 
   buildConnection = () => {
@@ -219,22 +228,22 @@ class Circuit {
       //Finds the co-ordinates of the two components being joined - offset by 25 for half node size
       let startX = comp1.x + 25;
       let startY = comp1.y + 25;
-      console.log('start x :', startX ,'start y :', startY)
+      // console.log('start x :', startX ,'start y :', startY)
       let endX = comp2.x + 25;
       let endY = comp2.y + 25;
-      console.log('end x :',endX ,'end y :', endY)
+      // console.log('end x :',endX ,'end y :', endY)
   
       //Work out the difference in terms of x and y between the components
       let a = endX - startX;
       let b = endY - startY;
-      console.log('x-distance:',a ,' y-distance :', b)
+      // console.log('x-distance:',a ,' y-distance :', b)
       //bit of pythag to work out the length the line needs to be
       let lineLength = Math.hypot(a, b);
-      console.log('Linelength:',lineLength)
+      // console.log('Linelength:',lineLength)
       //Works out the rotation of the angle in RADIANS
       let rotation = (Math.atan2(b,a))
-      console.log(Math.atan2(b,a))
-      console.log('Rotation:',rotation)
+      // console.log(Math.atan2(b,a))
+      // console.log('Rotation:',rotation)
       
   
       //places the line at the start x and y
@@ -255,4 +264,3 @@ class Circuit {
   let to = null;
   const circuitSpace = document.getElementById("drop-area");
   const circuit = new Circuit();
-  
